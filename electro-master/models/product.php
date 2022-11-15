@@ -11,6 +11,7 @@ class Product extends Db
         $data = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $data; //return an array
     }
+
     public function getProductById($id)
     {
         //khi cau truy van co them so where thi them bind_param

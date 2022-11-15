@@ -1,8 +1,9 @@
-<?php 
+<?php
 include "header.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +11,9 @@ include "header.php"
     <link rel="stylesheet" href="css/style.css">
     <title>login</title>
 </head>
+
 <body>
-<form action='login.php' class="dangnhap" method='POST'>
+    <form action='login.php' class="dangnhap" method='POST'>
         Tên đăng nhập : <input type='text' name='username' />
         Mật khẩu : <input type='password' name='password' />
         <input type='submit' class="button" name="dangnhap" value='Đăng nhập' />
@@ -19,4 +21,5 @@ include "header.php"
         <?php require 'xuly.php'; ?>
         <form>
 </body>
+
 </html>
