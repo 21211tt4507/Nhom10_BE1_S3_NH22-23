@@ -1,5 +1,9 @@
 
 <?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header('location:../login/index.php');
+}
 //tao class chứa các kết nối sql
 class Db
 {
