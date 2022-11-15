@@ -1,5 +1,5 @@
 <?php
-// session_start();
+// session_start(); Phần liên kết 
 // require "../config.php";
 // require "../models/db.php";
 // require "../models/user.php";

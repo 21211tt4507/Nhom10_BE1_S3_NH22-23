@@ -1,5 +1,5 @@
 <?php
-class User {
+class User extends Db{
     public function checkLogin($username, $password)
     {
         $sql = self::$connection->prepare("SELECT * FROM users WHERE 'username' = ? AND 'password' = ?");
