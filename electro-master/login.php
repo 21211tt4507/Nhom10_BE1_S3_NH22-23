@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 
+=======
+<?php
+include "header.php"
+?>
+>>>>>>> b53c091a0bd10949150fe325c87cb0c5ecee0e8a
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <head>
     <meta charset="utf-8">
@@ -42,7 +49,9 @@
 
 </head>>
 </head>
+
 <body>
+<<<<<<< HEAD
 <div id="top-header">
             <div class="container">
                 <ul class="header-links pull-left">
@@ -75,6 +84,9 @@
             <!-- container -->
         </div>
         <form action='login.php' class="dangnhap" method='POST'>
+=======
+    <form action='login.php' class="dangnhap" method='POST'>
+>>>>>>> b53c091a0bd10949150fe325c87cb0c5ecee0e8a
         Tên đăng nhập : <input type='text' name='username' />
         Mật khẩu : <input type='password' name='password' />
         <input type='submit' class="button" name="dangnhap" value='Đăng nhập' />
@@ -82,4 +94,5 @@
         <?php require 'xuly.php'; ?>
         <form>
 </body>
+
 </html>
