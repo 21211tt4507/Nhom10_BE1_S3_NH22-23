@@ -41,7 +41,9 @@
 
 </head>
 
+
 <body>
+
     <!-- HEADER -->
     <header>
         <!-- TOP HEADER -->
@@ -179,7 +181,7 @@
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="#hot-deal">Hot Deals</a></li>
                     <li><a href="store.php">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
+                    <li><a href="product.php">Laptops</a></li>
                     <li><a href="#">Smartphones</a></li>
                     <li><a href="#">Cameras</a></li>
                     <li><a href="#">Accessories</a></li>
