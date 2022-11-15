@@ -70,11 +70,11 @@
 							</label>
 						</div>
 
-						<div class="input-checkbox">
+						<!-- <div class="input-checkbox">
 							<input type="checkbox" id="category-5">
 							<label for="category-5">
 								<span></span>
-								Laptops
+								IPhone
 								<small>(120)</small>
 							</label>
 						</div>
@@ -83,10 +83,10 @@
 							<input type="checkbox" id="category-6">
 							<label for="category-6">
 								<span></span>
-								Smartphones
+								Samsung
 								<small>(740)</small>
 							</label>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<!-- /aside Widget -->
@@ -127,7 +127,7 @@
 							<input type="checkbox" id="brand-2">
 							<label for="brand-2">
 								<span></span>
-								LG
+								IPHONE
 								<small>(125)</small>
 							</label>
 						</div>
@@ -135,7 +135,7 @@
 							<input type="checkbox" id="brand-3">
 							<label for="brand-3">
 								<span></span>
-								SONY
+								INTEL
 								<small>(755)</small>
 							</label>
 						</div>
