@@ -7,7 +7,7 @@ define('DB_USER', 'root');
 /** MySQL database password */
 
 // connet with xamp
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', '');
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
 /** port number of DB */
