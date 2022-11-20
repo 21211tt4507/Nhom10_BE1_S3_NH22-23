@@ -235,5 +235,3 @@
 	<!-- /container -->
 </div>
 <!-- /NEWSLETTER -->
-
-<?php include "footer.php" ?>

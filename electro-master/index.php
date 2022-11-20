@@ -1,4 +1,8 @@
 <?php include "header.php" ?>
+<?php
+// <!-- Add ket noi database -->
+require_once 'models/db.php'
+?>
 
 <!-- SECTION -->
 <div class="section">
@@ -7,7 +11,7 @@
 		<!-- row -->
 		<div class="row">
 			<!-- shop -->
-			<div class="col-md-3 col-xs-6">
+			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
 						<img src="./img/shop01.png" alt="">
@@ -21,21 +25,7 @@
 			<!-- /shop -->
 
 			<!-- shop -->
-			<div class="col-md-3 col-xs-6">
-				<div class="shop">
-					<div class="shop-img">
-						<img src="./img/shop04.png" alt="">
-					</div>
-					<div class="shop-body">
-						<h3>Smartphones<br>Collection</h3>
-						<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-			</div>
-			<!-- /shop -->
-
-			<!-- shop -->
-			<div class="col-md-3 col-xs-6">
+			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
 						<img src="./img/shop03.png" alt="">
@@ -49,7 +39,7 @@
 			<!-- /shop -->
 
 			<!-- shop -->
-			<div class="col-md-3 col-xs-6">
+			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
 						<img src="./img/shop02.png" alt="">
@@ -265,18 +255,6 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hot-deal">
-					<?php
-					function countdown($event, $month, $day, $year)
-					{
-						$remain = ceil((mktime(11, 15, 2022, $month, $day, $year) - time()) / 86400);
-						if ($remain > 0) {
-							print "<p><strong>$remain</strong> ngày nữa là đến $event</p>";
-						} else {
-							print "<p>$event has arrived!</p>";
-						}
-					}
-					countdown("Christmas Day", 12, 25, 2013);
-					?>
 					<ul class="hot-deal-countdown">
 						<li>
 							<div>
