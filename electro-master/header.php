@@ -2,32 +2,40 @@
 session_start();
 require "config.php";
 require "models/db.php";
-require "models/protype.php";
-require "models/product.php";
-require "models/manufacture.php";
+require "models/protypes.php";
+require "models/products.php";
+require "models/manufactures.php";
 
 //tao bien moi
 $protype = new Protype;
 $product = new Product;
-$manufacture = new manufacture;
+$manufacture = new Manufacture;
 
 //lay all sp product
-$getAllProducts = $product->getAllProducts();
+$getNewProducts = $product->getNewProducts();
+$getTopSellingProducts = $product->getTopSellingProducts();
+$getTopSelling_3_6 = $product->getTopSelling_3_6();
+$getTopSelling_0_3 = $product->getTopSelling_0_3();
+$getTopSelling_6_9 = $product->getTopSelling_6_9();
 
 //lay all manufacture
-// $getAllManufacture = $manufacture->getAllManufacture();
+$getAllManufacture = $manufacture->getAllManufacture();
 
 //lay all protype
 $getAllProtype = $protype->getAllProtype();
+$getOneProtype =  $protype->getOneProtype();
+$getFourProtype =  $protype->getFourProtype();
+
+
 
 
 
 //bien total
 $totalCart = 0;
 if (isset($_SESSION['cart'])) :
-	foreach ($_SESSION['cart'] as $key => $value) {
-		$totalCart += $value;
-	}
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $totalCart += $value;
+    }
 endif;
 ?>
 
@@ -145,35 +153,34 @@ endif;
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Your Cart</span>
-                                    
+
                                 </a>
                                 <div class="cart-dropdown">
                                     <div class="cart-list">
-                                    <?php if (isset($_SESSION['cart'])) :
-											$totalPrice = 0;
-											foreach ($_SESSION['cart'] as $key => $value) :
-												$abc = $product->getProductById2($key);
-										?>
-
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./images/<?= $abc['hinhSP'] ?>" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="#"><?= $abc['tenSanPham'] ?></a></h3>
-                                                <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
-
+                                        <?php if (isset($_SESSION['cart'])) :
+                                            $totalPrice = 0;
+                                            foreach ($_SESSION['cart'] as $key => $value) :
+                                                $cart = $product->getProductById2($key);
+                                        ?>
+                                                <div class="product-widget">
+                                                    <div class="product-img">
+                                                        <img src="./images/<?= $cart['image'] ?>" alt="">
+                                                    </div>
+                                                    <div class="product-body">
+                                                        <h3 class="product-name"><a href="#"><?= $cart['name'] ?></a></h3>
+                                                        <h4 class="product-price"><span class="qty">X<?= $value ?></span><?= number_format($cart['price']) ?>VND</h4>
+                                                    </div>
+                                                    <a href="delete.php?id=<?= $key ?>">
+                                                        <button class="delete"><i class="fa fa-close"></i></button>
+                                                    </a>
+                                                </div>
+                                                <?php $totalPrice += $value * $cart['price'] ?>
                                         <?php endforeach;
-                                        endif;?>
-
-                                       
+                                        endif; ?>
                                     </div>
                                     <div class="cart-summary">
-                                        <small>3 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $2940.00</h5>
+                                        <small><?= $totalCart ?> is selected</small>
+                                        <h5>SUBTOTAL: <?= number_format($totalPrice)  ?>VND</h5>
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>
@@ -211,11 +218,11 @@ endif;
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="index.php">Home</a></li>
-					<?php foreach ($getAllProtype as $value) : ?>
-						<li><a href="loai.php? id=<?php echo $value['maLoai'] ?>"><?= $value['tenLoai'] ?></a></li>
-					<?php endforeach; ?>
-				</ul>
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <?php foreach ($getAllProtype as $value) : ?>
+                        <li><a href="loai.php? id=<?php echo $value['type_id'] ?>"><?= $value['type_name'] ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
                 <!-- /NAV -->
             </div>
             <!-- /responsive-nav -->

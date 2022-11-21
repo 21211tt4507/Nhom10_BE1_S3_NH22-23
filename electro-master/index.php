@@ -1,8 +1,5 @@
 <?php include "header.php" ?>
-<?php
-// <!-- Add ket noi database -->
-require_once 'models/db.php'
-?>
+
 
 <!-- SECTION -->
 <div class="section">
@@ -71,10 +68,12 @@ require_once 'models/db.php'
 					<h3 class="title">New Products</h3>
 					<div class="section-nav">
 						<ul class="section-tab-nav tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-							<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-							<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-							<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+							<?php foreach ($getOneProtype as $value) : ?>
+								<li class="active"><a data-toggle="tab" href="#tab1"><?= $value['type_name'] ?></a></li>
+							<?php endforeach; ?>
+							<?php foreach ($getFourProtype as $value) : ?>
+								<li><a data-toggle="tab" href="#tab1"><?= $value['type_name'] ?></a></li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 				</div>
@@ -89,149 +88,40 @@ require_once 'models/db.php'
 						<div id="tab1" class="tab-pane active">
 							<div class="products-slick" data-nav="#slick-nav-1">
 								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product01.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
+								<?php foreach ($getNewProducts as $value) : ?>
+									<div class="product">
+										<div class="product-img">
+											<img src='images/<?php echo $value['image'] ?>' alt="">
+											<div class="product-label">
+												<span class="new">NEW</span>
+											</div>
 										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+										<div class="product-body">
+											<p class="product-category"><?= $value['manu_name'] ?></p>
+											<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+											<h4 class="product-price"><?= number_format($value['price']) ?> VND
+												<!-- <del class="product-old-price">$990.00</del>-->
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="product-btns">
+												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											</div>
 										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
+										<a href="products.php? id=<?= $value['id'] ?>">
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											</div>
+										</a>
 									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product02.png" alt="">
-										<div class="product-label">
-											<span class="new">NEW</span>
-										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product03.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product04.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product05.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
+								<?php endforeach; ?>
 							</div>
 							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
@@ -258,19 +148,19 @@ require_once 'models/db.php'
 					<ul class="hot-deal-countdown">
 						<li>
 							<div>
-								<h3>02</h3>
+								<h3>1</h3>
 								<span>Days</span>
 							</div>
 						</li>
 						<li>
 							<div>
-								<h3>10</h3>
+								<h3>1</h3>
 								<span>Hours</span>
 							</div>
 						</li>
 						<li>
 							<div>
-								<h3>34</h3>
+								<h3>1</h3>
 								<span>Mins</span>
 							</div>
 						</li>
@@ -305,12 +195,12 @@ require_once 'models/db.php'
 				<div class="section-title">
 					<h3 class="title">Top selling</h3>
 					<div class="section-nav">
-						<ul class="section-tab-nav tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-							<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-							<li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-							<li><a data-toggle="tab" href="#tab2">Accessories</a></li>
-						</ul>
+						<?php foreach ($getOneProtype as $value) : ?>
+							<li class="active"><a data-toggle="tab" href="#tab1"><?= $value['type_id'] ?></a></li>
+						<?php endforeach; ?>
+						<?php foreach ($getFourProtype as $value) : ?>
+							<li><a data-toggle="tab" href="#tab1"><?= $value['type_id'] ?></a></li>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
@@ -321,164 +211,55 @@ require_once 'models/db.php'
 				<div class="row">
 					<div class="products-tabs">
 						<!-- tab -->
-						<div id="tab2" class="tab-pane fade in active">
-							<div class="products-slick" data-nav="#slick-nav-2">
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product06.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
-										</div>
+						<?php foreach ($getTopSellingProducts as $value) : ?>
+							<div class="product">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+									<div class="product-label">
+										<span class="new">NEW</span>
 									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['manu_name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del>-->
+									</h4>
+									<div class="product-rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
 									</div>
+									<div class="product-btns">
+										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+										<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+									</div>
+								</div>
+								<a href="products.php? id=<?= $value['id'] ?>">
 									<div class="add-to-cart">
 										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product07.png" alt="">
-										<div class="product-label">
-											<span class="new">NEW</span>
-										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product08.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product09.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product01.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
+								</a>
 							</div>
-							<div id="slick-nav-2" class="products-slick-nav"></div>
-						</div>
-						<!-- /tab -->
+							<!-- /product -->
+
+						<?php endforeach; ?>
+						<!-- /product -->
 					</div>
+					<div id="slick-nav-2" class="products-slick-nav"></div>
 				</div>
+				<!-- /tab -->
 			</div>
-			<!-- /Products tab & slick -->
 		</div>
-		<!-- /row -->
 	</div>
-	<!-- /container -->
+	<!-- /Products tab & slick -->
+</div>
+<!-- /row -->
+</div>
+<!-- /container -->
 </div>
 <!-- /SECTION -->
 
@@ -512,71 +293,55 @@ require_once 'models/db.php'
 						<!-- /product widget -->
 
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product08.png" alt="">
+						<?php foreach ($getTopSelling_0_3 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['manu_name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- /product widget -->
 
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product09.png" alt="">
+						<?php foreach ($getTopSelling_3_6 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['manu_name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- product widget -->
 					</div>
 
 					<div>
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product01.png" alt="">
+						<?php foreach ($getTopSelling_6_9 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['manu_name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- /product widget -->
 
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product02.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
 					</div>
 				</div>
 			</div>
@@ -592,85 +357,56 @@ require_once 'models/db.php'
 				<div class="products-widget-slick" data-nav="#slick-nav-4">
 					<div>
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product04.png" alt="">
+						<?php foreach ($getTopSelling_0_3 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- /product widget -->
 
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product05.png" alt="">
+						<?php foreach ($getTopSelling_3_6 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- /product widget -->
 
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product06.png" alt="">
+						<?php foreach ($getTopSelling_6_9 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- product widget -->
-					</div>
-
-					<div>
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product07.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product08.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product09.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
-					</div>
+					</div>										
 				</div>
 			</div>
 
@@ -687,85 +423,56 @@ require_once 'models/db.php'
 				<div class="products-widget-slick" data-nav="#slick-nav-5">
 					<div>
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product01.png" alt="">
+						<?php foreach ($getTopSelling_0_3 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- /product widget -->
 
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product02.png" alt="">
+						<?php foreach ($getTopSelling_3_6 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- /product widget -->
 
 						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product03.png" alt="">
+						<?php foreach ($getTopSelling_6_9 as $value) : ?>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="images/<?= $value['image'] ?>" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category"><?= $value['name'] ?></p>
+									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+									<h4 class="product-price"><?= number_format($value['price']) ?> VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+								</div>
 							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						<!-- product widget -->
-					</div>
-
-					<div>
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product04.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product05.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product06.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
-					</div>
+					</div>				
 				</div>
 			</div>
 
