@@ -27,9 +27,6 @@ $getOneProtype =  $protype->getOneProtype();
 $getFourProtype =  $protype->getFourProtype();
 
 
-
-
-
 //bien total
 $totalCart = 0;
 if (isset($_SESSION['cart'])) :
@@ -164,7 +161,7 @@ endif;
                                         ?>
                                                 <div class="product-widget">
                                                     <div class="product-img">
-                                                        <img src="./images/<?= $cart['image'] ?>" alt="">
+                                                        <img src="./img/<?= $cart['image'] ?>" alt="">
                                                     </div>
                                                     <div class="product-body">
                                                         <h3 class="product-name"><a href="#"><?= $cart['name'] ?></a></h3>
@@ -180,7 +177,7 @@ endif;
                                     </div>
                                     <div class="cart-summary">
                                         <small><?= $totalCart ?> is selected</small>
-                                        <h5>SUBTOTAL: <?= number_format($totalPrice)  ?>VND</h5>
+                                        <!-- <h5>SUBTOTAL: <?= number_format($totalPrice)  ?>VND</h5> -->
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>

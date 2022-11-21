@@ -11,7 +11,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="./img/shop01.png" alt="">
+						<img style="height: 250px" ; src="./img/ma.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>Laptop<br>Collection</h3>
@@ -25,7 +25,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="./img/shop03.png" alt="">
+						<img style="height: 250px" ; src="./img/shop03.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>Accessories<br>Collection</h3>
@@ -39,7 +39,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="./img/shop02.png" alt="">
+						<img style="height: 250px" ; src="./img/shop02.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>Cameras<br>Collection</h3>
@@ -90,15 +90,15 @@
 								<!-- product -->
 								<?php foreach ($getNewProducts as $value) : ?>
 									<div class="product">
-										<div class="product-img">
-											<img src='images/<?php echo $value['image'] ?>' alt="">
+										<div class="product-img " style="height: 170px;">
+											<img style="height: 170px" src='img/<?php echo $value['image'] ?>' alt="">
 											<div class="product-label">
 												<span class="new">NEW</span>
 											</div>
 										</div>
 										<div class="product-body">
 											<p class="product-category"><?= $value['manu_name'] ?></p>
-											<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+											<h3 class="product-name" style="height: 50px;"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
 											<h4 class="product-price"><?= number_format($value['price']) ?> VND
 												<!-- <del class="product-old-price">$990.00</del>-->
 											</h4>
@@ -160,7 +160,7 @@
 						</li>
 						<li>
 							<div>
-								<h3>1</h3>
+								<h3>10</h3>
 								<span>Mins</span>
 							</div>
 						</li>
@@ -196,10 +196,10 @@
 					<h3 class="title">Top selling</h3>
 					<div class="section-nav">
 						<?php foreach ($getOneProtype as $value) : ?>
-							<li class="active"><a data-toggle="tab" href="#tab1"><?= $value['type_id'] ?></a></li>
+							<li class="active"><a data-toggle="tab" href="#tab1"><?= $value['type_name'] ?></a></li>
 						<?php endforeach; ?>
 						<?php foreach ($getFourProtype as $value) : ?>
-							<li><a data-toggle="tab" href="#tab1"><?= $value['type_id'] ?></a></li>
+							<li><a data-toggle="tab" href="#tab1"><?= $value['type_name'] ?></a></li>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -211,55 +211,58 @@
 				<div class="row">
 					<div class="products-tabs">
 						<!-- tab -->
-						<?php foreach ($getTopSellingProducts as $value) : ?>
-							<div class="product">
-								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
-									<div class="product-label">
-										<span class="new">NEW</span>
+						<div id="tab2" class="tab-pane fade in active">
+							<div class="products-slick" data-nav="#slick-nav-2">
+								<!-- product -->
+								<?php foreach ($getTopSellingProducts as $value) : ?>
+									<div class="product">
+										<div class="product-img" style="height: 170px;">
+											<img style="height: 170px; padding: 20px" src="img/<?= $value['image'] ?>" alt="">
+											<div class="product-label">
+												<!-- <span class="sale">-30%</span> -->
+												<span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category"><?= $value['manu_name'] ?></p>
+											<h3 class="product-name" style="height: 50px;"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
+											<h4 class="product-price"><?= number_format($value['price']) ?> VND
+												<!-- <del class="product-old-price">$990.00</del>-->
+											</h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="product-btns">
+												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+											</div>
+										</div>
+										<a href="products.php? id=<?= $value['id'] ?>">
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											</div>
+										</a>
 									</div>
-								</div>
-								<div class="product-body">
-									<p class="product-category"><?= $value['manu_name'] ?></p>
-									<h3 class="product-name"><a href="products.php? id=<?php echo $value['id'] ?>"><?= $value['name'] ?></a></h3>
-									<h4 class="product-price"><?= number_format($value['price']) ?> VND
-										<!-- <del class="product-old-price">$990.00</del>-->
-									</h4>
-									<div class="product-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-										<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-										<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-									</div>
-								</div>
-								<a href="products.php? id=<?= $value['id'] ?>">
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</a>
-							</div>
-							<!-- /product -->
+									<!-- /product -->
+								<?php endforeach; ?>
 
-						<?php endforeach; ?>
-						<!-- /product -->
+							</div>
+							<div id="slick-nav-2" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
 					</div>
-					<div id="slick-nav-2" class="products-slick-nav"></div>
 				</div>
-				<!-- /tab -->
 			</div>
+			<!-- /Products tab & slick -->
 		</div>
+		<!-- /row -->
 	</div>
-	<!-- /Products tab & slick -->
-</div>
-<!-- /row -->
-</div>
-<!-- /container -->
+	<!-- /container -->
 </div>
 <!-- /SECTION -->
 
@@ -296,7 +299,7 @@
 						<?php foreach ($getTopSelling_0_3 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['manu_name'] ?></p>
@@ -312,7 +315,7 @@
 						<?php foreach ($getTopSelling_3_6 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['manu_name'] ?></p>
@@ -330,7 +333,7 @@
 						<?php foreach ($getTopSelling_6_9 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['manu_name'] ?></p>
@@ -360,7 +363,7 @@
 						<?php foreach ($getTopSelling_0_3 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['name'] ?></p>
@@ -377,7 +380,7 @@
 						<?php foreach ($getTopSelling_3_6 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['name'] ?></p>
@@ -394,7 +397,7 @@
 						<?php foreach ($getTopSelling_6_9 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['name'] ?></p>
@@ -406,7 +409,7 @@
 							</div>
 						<?php endforeach; ?>
 						<!-- product widget -->
-					</div>										
+					</div>
 				</div>
 			</div>
 
@@ -426,7 +429,7 @@
 						<?php foreach ($getTopSelling_0_3 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['name'] ?></p>
@@ -443,7 +446,7 @@
 						<?php foreach ($getTopSelling_3_6 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['name'] ?></p>
@@ -460,7 +463,7 @@
 						<?php foreach ($getTopSelling_6_9 as $value) : ?>
 							<div class="product-widget">
 								<div class="product-img">
-									<img src="images/<?= $value['image'] ?>" alt="">
+									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
 								<div class="product-body">
 									<p class="product-category"><?= $value['name'] ?></p>
@@ -472,7 +475,7 @@
 							</div>
 						<?php endforeach; ?>
 						<!-- product widget -->
-					</div>				
+					</div>
 				</div>
 			</div>
 

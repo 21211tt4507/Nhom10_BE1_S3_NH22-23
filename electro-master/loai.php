@@ -44,7 +44,7 @@ include "header.php";
 
 											<div class="product">
 												<div class="product-img" style="height: 170px;">
-													<img style="height: 170px" src='images/<?php echo $value['image'] ?>' alt="">
+													<img style="height: 170px" src='img/<?php echo $value['image'] ?>' alt="">
 													<div class="product-label">
 
 														<span class="new">NEW</span>

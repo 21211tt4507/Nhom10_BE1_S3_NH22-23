@@ -3,7 +3,7 @@ class Product extends Db
 {
     public function getAllProducts()
     {
-        $sql = self::$connection->prepare("SELECT id,manu_name, name, type_id , price, image,description FROM products, manufactures WHERE products.manu_id = manufactures.manu_id");
+        $sql = self::$connection->prepare("SELECT id,manu_id,manu_name, name, type_id , price, image,description FROM products, manufactures WHERE products.manu_id = manufactures.manu_id");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -11,7 +11,7 @@ class Product extends Db
     }
     public function getProductById($id)
     {
-        $sql = self::$connection->prepare("SELECT id, manu_id, manu_name,name,type_id,price,image,description FROM products, manufactures WHERE products.manu_id = manufactures.manu_id AND id = ?");
+        $sql = self::$connection->prepare("SELECT id, manu_name,name,type_id,price,image,description FROM products, manufactures WHERE products.manu_id = manufactures.manu_id AND id = ?");
         $sql->bind_param("i", $id);
         $sql->execute(); //return an object
         $items = array();
