@@ -85,7 +85,6 @@ a:focus {
   text-decoration: none;
   outline: none;
 }
-
 ul,
 ol {
   margin: 0;
@@ -142,20 +141,20 @@ textarea.input {
   position: relative;
 }
 
-.input-number input[type="number"]::-webkit-inner-spin-button, .input-number input[type="number"]::-webkit-outer-spin-button {
-  /* -webkit-appearance: none; */
+.input-number input[type="number"]::-webkit-inner-spin-button,
+.input-number input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
   margin: 0;
 }
 
 .input-number input[type="number"] {
-  /* -moz-appearance: textfield; */
+  -moz-appearance: textfield;
   height: 40px;
   width: 100%;
   border: 1px solid #E4E7ED;
   background-color: #FFF;
   padding: 0px 35px 0px 15px;
 }
-
 
 .input-number .qty-up,
 .input-number .qty-down {
@@ -2256,3 +2255,4 @@ textarea.input {
     margin-top: 10px;
   }
 }
+

@@ -7,5 +7,5 @@ if(isset($_GET['id'])){
 else{
     unset($_SESSION['cart']);
 }
-header('location:index.php');
+header('location:ViewCart.php');
 //header('location:index.php');

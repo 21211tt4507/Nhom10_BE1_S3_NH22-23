@@ -36,7 +36,7 @@ include "header.php";
 					<div class="checkbox-filter">
 						<?php foreach ($getAllProtype as $value) : ?>
 							<div class="input-checkbox">
-								<input type="checkbox" id="category-<?= $value['id'] ?>">
+								<input type="checkbox" id="category-<?= $value['type_id'] ?>">
 								<label for="category-<?= $value['type_id'] ?>">
 									<span></span>
 									<?= $value['type_name'] ?>

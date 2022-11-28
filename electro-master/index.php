@@ -11,7 +11,7 @@
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img style="height: 250px" ; src="./img/ma.png" alt="">
+						<img style="height: 250px" ; src="./img/shop01.png" alt="">
 					</div>
 					<div class="shop-body">
 						<h3>Laptop<br>Collection</h3>
@@ -109,17 +109,32 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
+											<?php $link1 = null; ?>
+											<?php if (isset($_SESSION['user'])) {
+												$link1 = 'wishlist.php?id=' .  $value['id'] . '&&page=index.php';
+											} ?>
 											<div class="product-btns">
-												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+												<button class="add-to-wishlist"><a href="<?php echo $link1; ?>" onclick="display()"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
+															wishlist</span></a></button>
 												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 											</div>
 										</div>
-										<a href="products.php? id=<?= $value['id'] ?>">
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</a>
+										<?php $link = null; ?>
+										<?php if (isset($_SESSION['user'])) {
+											$link = "cart.php?id=" . $value['id'] . '&&page=index.php';
+										} ?>
+										<div class="add-to-cart">
+											<a href="<?php echo $link; ?>" onclick="display()"><button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+													cart</button></a>
+											<?php if (!isset($_SESSION['user'])) : ?>
+												<script>
+													function display() {
+														alert("Bạn phải đăng nhập trước đã!!");
+													}
+												</script>
+											<?php endif; ?>
+										</div>
 									</div>
 								<?php endforeach; ?>
 							</div>
@@ -136,52 +151,6 @@
 	<!-- /container -->
 </div>
 <!-- /SECTION -->
-
-<!-- HOT DEAL SECTION -->
-<div id="hot-deal" class="section">
-	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hot-deal">
-					<ul class="hot-deal-countdown">
-						<li>
-							<div>
-								<h3>1</h3>
-								<span>Days</span>
-							</div>
-						</li>
-						<li>
-							<div>
-								<h3>1</h3>
-								<span>Hours</span>
-							</div>
-						</li>
-						<li>
-							<div>
-								<h3>10</h3>
-								<span>Mins</span>
-							</div>
-						</li>
-						<li>
-							<div>
-								<h3>60</h3>
-								<span>Secs</span>
-							</div>
-						</li>
-					</ul>
-					<h2 class="text-uppercase">hot deal this week</h2>
-					<p>New Collection Up to 50% OFF</p>
-					<a class="primary-btn cta-btn" href="store.php">Shop now</a>
-				</div>
-			</div>
-		</div>
-		<!-- /row -->
-	</div>
-	<!-- /container -->
-</div>
-<!-- /HOT DEAL SECTION -->
 
 <!-- SECTION -->
 <div class="section">

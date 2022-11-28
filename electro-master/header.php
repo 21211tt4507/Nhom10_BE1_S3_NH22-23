@@ -13,6 +13,7 @@ $manufacture = new Manufacture;
 
 //lay all sp product
 $getNewProducts = $product->getNewProducts();
+$getAllProducts1 = $product->getAllProducts1();
 $getTopSellingProducts = $product->getTopSellingProducts();
 $getTopSelling_3_6 = $product->getTopSelling_3_6();
 $getTopSelling_0_3 = $product->getTopSelling_0_3();
@@ -29,16 +30,16 @@ $getFourProtype =  $protype->getFourProtype();
 
 //bien total
 $total = 0;
-	$qty = 0;
-	if (isset($_SESSION['cart'])) {
-		foreach ($_SESSION['cart'] as $key => $value) {
-			$qty = $qty + $value;
-		}
-	}
-	if (isset($_GET['typeid'])) {
-		$productByProtype = $products->getProductByProtype($_GET['typeid']);
-	}
-	?>
+$qty = 0;
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $qty = $qty + $value;
+    }
+}
+if (isset($_GET['typeid'])) {
+    $productByProtype = $products->getProductByProtype($_GET['typeid']);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,19 +70,20 @@ $total = 0;
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css/style.css" />
-
-    <!-- Add js time -->
-    <link rel="stylesheet" href="js/time.js">
-
-
-
-
+    <link type="text/css" rel="stylesheet" href="css/styledrop.css" />
+    <link type="text/css" rel="stylesheet" href="css/styleform.css" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+    <!-- Theme styles START -->
+    <link href="assets/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+    <!-- Theme styles END -->
+    <!-- Global styles START -->
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Global styles END -->
 
 </head>
 
@@ -98,7 +100,30 @@ $total = 0;
                 </ul>
                 <ul class="header-links pull-right">
                     <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                    <li><a href="login.php"><i class="fa fa-user-o"></i> My Account</a></li>
+                    <li>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-user-o"></i>
+                                <?php
+                                if (isset($_SESSION['user'])) {
+                                    echo "Xin chào " .  (strtoupper($_SESSION['user']));;
+                                } else {
+                                    echo "My Account";
+                                }
+                                ?>
+                            </a>
+
+                            <div class="noidung_dropdown">
+                                <?php if (isset($_SESSION['user'])) : ?>
+                                    <a style="padding-right: 14px" href="./information.php?id_user= <?php echo $_SESSION['user']; ?>">Thông Tin</a>
+                                    <a href="./logout/logout.php">LOGOUT</a>
+
+                                <?php else : ?>
+                                    <a href="./login/login.php">Login</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -122,19 +147,19 @@ $total = 0;
 
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
-						<div class="header-search">
-							<form action="result.php" method="get">
-								<select class="input-select" name="categori">
-									<option value="0" >All Categories</option>
-									<?php foreach ($allProtype as $value) { ?>
-										<option value="<?php echo $value['type_id']?>"> <?php echo $value['type_name'] ?> </option>
-									<?php } ?>
-								</select>
-								<input class="input" name="keyword" placeholder="Search here">
-								<button type="submit" class="search-btn">Search</button>
-							</form>
-						</div>
-					</div>
+                        <div class="header-search">
+                            <form action="result.php" method="get">
+                                <select class="input-select" name="categori">
+                                    <option value="0">All Categories</option>
+                                    <?php foreach ($allProtype as $value) { ?>
+                                        <option value="<?php echo $value['type_id'] ?>"> <?php echo $value['type_name'] ?> </option>
+                                    <?php } ?>
+                                </select>
+                                <input class="input" name="keyword" placeholder="Search here">
+                                <button type="submit" class="search-btn">Search</button>
+                            </form>
+                        </div>
+                    </div>
                     <!-- /SEARCH BAR -->
 
                     <!-- ACCOUNT -->
@@ -142,62 +167,108 @@ $total = 0;
                         <div class="header-ctn">
                             <!-- Wishlist -->
                             <div>
-                                <a href="#">
+                                <?php $link = null; ?>
+                                <?php if (isset($_SESSION['user'])) {
+                                    $link = "viewwishlist.php?pages=1";
+                                } ?>
+                                <a href="<?php echo $link; ?>" onclick="display()">
                                     <i class="fa fa-heart-o"></i>
                                     <span>Your Wishlist</span>
-                                    <div class="qty">0</div>
+                                    <?php if (isset($_SESSION['wishlist'])) :
+                                        $qty1 = 0;
+                                        foreach ($_SESSION['wishlist'] as $k => $values) : ?>
+                                            <div class="qty"><?php echo ++$qty1; ?></div>
+                                    <?php endforeach;
+                                    endif; ?>
+                                    <?php if (!isset($_SESSION['user'])) : ?>
+                                        <script>
+                                            function display() {
+                                                alert("Bạn phải đăng nhập trước đã!!");
+                                            }
+                                        </script>
+                                    <?php endif; ?>
                                 </a>
                             </div>
                             <!-- /Wishlist -->
 
+
                             <!-- Cart -->
-							<div class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Your Cart</span>
-									<div class="qty"><?php echo $qty ?></div>
-								</a>
-								<div class="cart-dropdown">
-									<?php
-									
-									if (isset($_SESSION['cart'])) { ?>
-										<div class="cart-list">
-											<?php
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Your Cart</span>
+                                    <?php
+                                    if (isset($_SESSION['cart'])) :
+                                        $qty = 0;
+                                        foreach ($_SESSION['cart'] as $k => $values) : ?>
+                                            <div class="qty"><?php echo ++$qty; ?></div>
+                                    <?php endforeach;
+                                    endif; ?>
+                                </a>
+                                <div class="cart-dropdown">
 
-											foreach ($_SESSION['cart'] as $key => $value) {
-												foreach ($allProducts as $p) {
-													if ($p['id'] == $key) {
-														$total = $total + $p['price'];
-														$qty = $qty + $value;
-											?>
-														<div class="product-widget">
-															<div class="product-img">
-																<img style="height: 50px; width: 50px;" src="./img/<?php echo $p['image'] ?>" alt="">
-															</div>
-															<div class="product-body">
-																<h3 class="product-name"><a href="#"><?php echo $p['name'] ?></a></h3>
-																<h4 class="product-price"><span class="qty"><?php echo $value ?>x </span><?php echo number_format($p['price']) ?> VND</h4>
-															</div>
-															<button class="delete"><i class="fa fa-close"></i></button>
-														</div>
+                                    <div class="cart-list">
+                                        <?php
+                                        //session_destroy();
+                                        if (isset($_SESSION['cart'])) :
+                                            foreach ($_SESSION['cart'] as $k => $values) :
+                                                foreach ($getAllProducts1 as $v) :
+                                                    if ($v['id'] == $k) : ?>
+                                                        <div class="product-widget">
+                                                            <div class="product-img">
+                                                                <img src="./img/<?php echo $v['image'] ?>" alt="">
+                                                            </div>
+                                                            <div class="product-body">
+                                                                <h3 class="product-name"><a href="#"><?php echo $v['name'] ?></a></h3>
+                                                                <h4 class="product-price"><span class="qty"><?php echo $values ?>x</span><?php echo number_format(($v['price'] - $v['price'] * $v['discount'] / 100) * $values) . " ₫";  ?>
+                                                                </h4>
+                                                            </div>
+                                                            <a href="del.php?id=<?php echo $k ?>"><button class="delete"><i class="fa fa-close"></i></button></a>
+                                                        </div>
+                                        <?php endif;
+                                                endforeach;
+                                            endforeach;
+                                        endif; ?>
+                                    </div>
 
-											<?php }
-												}
-											}
-											?>
-										</div>
-									<?php } ?>
-									<div class="cart-summary">
-										<small><?php echo $qty ?> Item(s) selected</small>
-										<h5>SUBTOTAL: <?php echo number_format($total) ?> VND</h5>
-									</div>
-									<div class="cart-btns">
-										<a href="cart.php">View Cart</a>
-										<a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-									</div>
-								</div>
-							</div>
-							<!-- /Cart -->
+                                    <div class="cart-summary">
+                                        <?php if (isset($_SESSION['cart'])) : ?>
+                                            <small><?php echo $qty; ?> Item(s) selected</small>
+                                            <?php
+                                            $price = 0;
+                                            foreach ($_SESSION['cart'] as $k => $values) :
+                                                foreach ($getAllProducts1 as $v) :
+                                                    if ($v['id'] == $k) :
+                                                        $price += ($v['price'] - $v['price'] * $v['discount'] / 100) * $values;
+                                            ?>
+                                            <?php endif;
+                                                endforeach;
+                                            endforeach;  ?>
+                                            <h5>SUBTOTAL: <?php echo  number_format($price) . " ₫"; ?></h5>
+                                        <?php endif; ?>
+
+
+                                    </div>
+                                    <div class="cart-btns">
+                                        <?php $link = $link2 = null; ?>
+                                        <?php if (isset($_SESSION['user'])) {
+                                            $link = "viewcard.php";
+                                            $link2 = "checkout.php";
+                                        } ?>
+                                        <a href="<?php echo $link; ?>" onclick="display()">View Cart</a>
+                                        <a href="<?php echo $link2; ?>" onclick="display()">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                    <?php if (!isset($_SESSION['user'])) : ?>
+                                        <script>
+                                            function display() {
+                                                alert("Bạn phải đăng nhập trước đã!!");
+                                            }
+                                        </script>
+                                    <?php endif; ?>
+                                </div>
+
+                            </div>
+                            <!-- /Cart -->
 
                             <!-- Menu Toogle -->
                             <div class="menu-toggle">

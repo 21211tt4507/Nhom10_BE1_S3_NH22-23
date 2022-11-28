@@ -2,20 +2,15 @@
 
 if(isset($_GET['id'])):
     $id = $_GET['id'];
-    if(isset($_POST['qty'])):
-		
-        $_SESSION['cart'][$id] =  $_POST['qty'];
     
-    else:
-
-    if(isset($_SESSION['cart'][$id])):
-        $_SESSION['cart'][$id]++;
+    if(isset($_SESSION['wishlist'][$id])):
+        $_SESSION['wishlist'][$id]++;
         
 		
     else:
-        $_SESSION['cart'][$id] = 1;
+        $_SESSION['wishlist'][$id] = 1;
     endif;
-    endif;
+ 
 endif;
 $page = $_GET['page'];
 if($page == 'index.php')
@@ -28,10 +23,9 @@ else if($page == 'productOfprotypes.php')
 }
 else if($page == 'result.php')
 {
-    header('location:'.$page."?type_prd=".$_GET['type_prd']."&&keyword=".$_GET['keyword']);
+    header('location:'.$page."?type_prd=".$_GET['type_prd']."&&keyword=".$_GET['keyword'])."pages=1";
 }
 else
 {
     header('location:'.$page.'?id='.$_GET['id']);
 }
-

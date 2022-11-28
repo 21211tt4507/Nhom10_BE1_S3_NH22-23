@@ -43,7 +43,7 @@ include "header.php";
 							<div id="product-main-img">
 								<div class="product-preview">
 									<img src="img/<?= $value['image'] ?>" alt="">
-								</div>								
+								</div>
 							</div>
 						</div>
 						<!-- /Product main img -->
@@ -54,18 +54,6 @@ include "header.php";
 								<div class="product-preview">
 									<img src="img/<?= $value['image'] ?>" alt="">
 								</div>
-								<!-- 
-						<div class="product-preview">
-							<img src="./img/product03.png" alt="">
-						</div>
-
-						<div class="product-preview">
-							<img src="./img/product06.png" alt="">
-						</div>
-
-						<div class="product-preview">
-							<img src="./img/product08.png" alt="">
-						</div> -->
 							</div>
 						</div>
 						<!-- /Product thumb imgs -->
@@ -124,12 +112,12 @@ include "header.php";
 										</div>
 									</div>
 
-									<button class="add-to-cart-btn" onclick="addToCart(<?php echo $id ?>)"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									<button class="add-to-cart-btn" onclick="addToCart(<?php echo $id ?>)"><i class="fa fa-shopping-cart"></i> Add to cart</button>
 								</div>
 
 								<ul class="product-btns">
-									<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-									<li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
+									<li><a href="#"><i class="fa fa-heart-o"></i> Add to wishlist</a></li>
+									<li><a href="#"><i class="fa fa-exchange"></i> Add to compare</a></li>
 								</ul>
 
 								<ul class="product-links">
@@ -386,12 +374,12 @@ include "header.php";
 					<h3 class="title">Related Products</h3>
 				</div>
 			</div>
-			<?php if (isset($_GET['id'])) :
+			<?php if (isset($_GET['type_id'])) :
 				$id = $_GET['id'];
 				// $getProducts = $product->getProducts();
 				foreach ($getAllProducts as $value) :
-					if ($id == $value['id']) :
-						$maLoai = $value['type_iD'];
+					if ($id == $value['type_id']) :
+						$maLoai = $value['type_id'];
 						$getProductByIdMaLoai = $product->getProductByIdMaLoai($maLoai);
 						foreach ($getProductByIdMaLoai as $value1) :
 			?>
@@ -401,12 +389,11 @@ include "header.php";
 									<div class="product-img">
 										<img style="height: 170px;" src="img/<?= $value1['image'] ?>" alt="">
 										<div class="product-label">
-											<!-- <span class="sale">-30%</span> -->
 										</div>
 									</div>
 									<div class="product-body">
 										<p class="product-category"><?= $value1['manu_name'] ?></p>
-										<h3 class="product-name" style="height: 50px;"><a href="products.php? id=<?php echo $value1['id'] ?>"><?= $value1['name'] ?></a></h3>
+										<h3 class="product-name" style="height: 50px;"><a href="products.php?id=<?php echo $value1['id'] ?>"><?= $value1['name'] ?></a></h3>
 										<h4 class="product-price"><?= number_format($value1['price']) ?> VND
 											<!-- <del class="product-old-price">$990.00</del> -->
 										</h4>
@@ -418,7 +405,7 @@ include "header.php";
 											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 										</div>
 									</div>
-									<a href="products.php? id=<?= $value1['id'] ?>">
+									<a href="products.php?id=<?= $value1['id'] ?>">
 										<div class="add-to-cart">
 											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 										</div>
