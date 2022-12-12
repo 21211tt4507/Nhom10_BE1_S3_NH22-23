@@ -9,6 +9,7 @@ $product = new Products;
 $manufacture = new Manufactures;
 $protype = new Protype;
 ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 

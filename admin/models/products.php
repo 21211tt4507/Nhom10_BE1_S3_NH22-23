@@ -4,7 +4,7 @@ class Products extends Db
     public function getAllProducts()
     {
 
-        $sql = self::$connection->prepare("SELECT * FROM products, manufactures, protypes WHERE products.type_id=protypes.type_id AND products.manu_id=manufactures.manu_id ORDER BY id ASC");
+        $sql = self::$connection->prepare("SELECT * FROM products, manufactures, protypes WHERE products.type_id=protypes.type_id AND products.manu_id=manufactures.manu_id ORDER BY id DESC");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -24,8 +24,8 @@ class Products extends Db
     //Thêm sản phẩm 
     public function addProduct($name, $type_id, $manu_id, $image, $price, $desc, $soLuongSell ,$kho)
     {
-        $sql = self::$connection->prepare("INSERT INTO products(`name`,`type_id`, `manu_id`, `image`, `price`, `description`, `sold` , `kho`) VALUES (?,?,?,?,?,?,?,?)");
-        $sql->bind_param("siisisiiii",$name, $type_id, $manu_id, $image, $price, $desc, $sold ,$kho);
+        $sql = self::$connection->prepare("INSERT INTO products(`name`,`type_id`, `manu_id`, `image`, `price`, `description`, `soLuongSell` , `kho`) VALUES (?,?,?,?,?,?,?,?) ORDER BY id DESC");
+        $sql->bind_param("siisisii",$name, $type_id, $manu_id, $image, $price, $desc, $soLuongSell ,$kho);
         return $sql->execute(); //return an object       
     }
     // Xóa sản phẩm
@@ -113,7 +113,7 @@ class Products extends Db
 
     public function getHotDeals()
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE sold>20 ");
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE soLuongSell>20 ");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -123,7 +123,7 @@ class Products extends Db
     // đếm số lượng sản phẩm hot deal
     public function countHotDeals()
     {
-        $sql = self::$connection->prepare("SELECT COUNT(*) as 'qty'FROM products WHERE sold > 20");
+        $sql = self::$connection->prepare("SELECT COUNT(*) as 'qty'FROM products WHERE soLuongSell > 20");
 
         $sql->execute(); //return an object
         $qty = $sql->get_result()->fetch_assoc();
@@ -141,7 +141,7 @@ class Products extends Db
     // lấy 3 sản phẩm hotdeal đầu danh sách
     public function getHotDealsByTypeId($type_id)
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = $type_id AND sold>20 LIMIT 0,3");
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = $type_id AND soLuongSell>20 LIMIT 0,3");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -150,7 +150,7 @@ class Products extends Db
     // lấy 3 sản phẩm hotdeal tiếp theo
     public function getHotDealsByTypeIdNext($type_id)
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = $type_id AND sold>20 LIMIT 3,3");
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = $type_id AND soLuongSell>20 LIMIT 3,3");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -248,7 +248,7 @@ class Products extends Db
         // Tính số thứ tự trang bắt đầu
         $firstLink = ($page - 1) * $perPage;
         //Dùng LIMIT để giới hạn số lượng hiển thị 1 trang
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE sold > 20 LIMIT $firstLink, $perPage");
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE soLuongSell > 20 LIMIT $firstLink, $perPage");
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);

@@ -51,21 +51,21 @@ require "sidebar.php";
                 <div class="form-group">
                   <label for="exampleInputPassword1">Description</label>
                   <input type="text" name="description" class="form-control" id="description" placeholder="Enter Description">
+                </div>               
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Sold</label>
+                  <input type="number" name="soLuongSell" class="form-control" id="soLuongSell" placeholder="Enter soLuongSell">
                 </div>
                 <div class="form-group">
-                  <label for="sold">Sold</label>
-                  <input type="number" name="sold" class="form-control" id="description" placeholder="Enter Sold">
-                </div>
-                <div class="form-group">
-                  <label for="sold">In Stock</label>
-                  <input type="number" name="instock" class="form-control" id="description" placeholder="Enter In Stock">
+                  <label for="exampleInputPassword1">Kho</label>
+                  <input type="number" name="kho" class="form-control" id="kho" placeholder="Enter kho">
                 </div>
 
                 <div class="form-group">
                   <label for="inputStatus">Manufacture</label>
                   <select name="manu_id" id="inputStatus" class="form-control custom-select">
                     <option selected disabled>Select one</option>
-                    <?php $getManu = $manufacture->getAllMaunufactures();
+                    <?php $getManu = $manufacture ->getAllMaunufactures();
                     foreach ($getManu as $value) { ?>
                       <option value="<?php echo $value['manu_id'] ?>"><?php echo $value['manu_name'] ?></option>
                     <?php } ?>
